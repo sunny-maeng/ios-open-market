@@ -47,6 +47,7 @@ final class MarketListViewController: UIViewController {
                     self.configureListView()
                     self.configureDataSource()
                     self.applySnapshot()
+                    self.listView.delegate = self
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -89,6 +90,12 @@ final class MarketListViewController: UIViewController {
         snapshot.appendSections([.productList])
         snapshot.appendItems(pageData)
         dataSource?.apply(snapshot)
+    }
+}
+
+extension MarketListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(DetailViewController(), animated: true)
     }
 }
 

@@ -25,6 +25,8 @@
 		41B6E8A82923BDD900CBF91D /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B6E8A72923BDD900CBF91D /* DateFormatter+Extension.swift */; };
 		41BA5BF7292C9BF100EAED05 /* MarketListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BA5BF6292C9BF100EAED05 /* MarketListViewController.swift */; };
 		41BA5BF9292C9CB200EAED05 /* MarketListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BA5BF8292C9CB200EAED05 /* MarketListCell.swift */; };
+		41C61D9D2943835F00D5DA92 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C61D9C2943835F00D5DA92 /* DetailView.swift */; };
+		41C61DA029438C6500D5DA92 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C61D9F29438C6500D5DA92 /* DetailViewController.swift */; };
 		41D3D7772924814B00C86A9A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D3D7762924814B00C86A9A /* SampleData.swift */; };
 		86208A67292F5FEA00DD7C1C /* ImageCacheProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86208A66292F5FEA00DD7C1C /* ImageCacheProvider.swift */; };
 		8640489B29399119001F00B8 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640489A29399119001F00B8 /* ImageCollectionViewCell.swift */; };
@@ -83,6 +85,8 @@
 		41B6E8A72923BDD900CBF91D /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		41BA5BF6292C9BF100EAED05 /* MarketListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketListViewController.swift; sourceTree = "<group>"; };
 		41BA5BF8292C9CB200EAED05 /* MarketListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketListCell.swift; sourceTree = "<group>"; };
+		41C61D9C2943835F00D5DA92 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		41C61D9F29438C6500D5DA92 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		41D3D7762924814B00C86A9A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		86208A66292F5FEA00DD7C1C /* ImageCacheProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheProvider.swift; sourceTree = "<group>"; };
 		8640489A29399119001F00B8 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -132,24 +136,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		410573C92938E168000D01EE /* MainView */ = {
+		410573C92938E168000D01EE /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
 				C70FB0FE25BEF61C00C9924E /* MainViewController.swift */,
 				41BA5BF6292C9BF100EAED05 /* MarketListViewController.swift */,
-				41BA5BF8292C9CB200EAED05 /* MarketListCell.swift */,
 				4171DE0E292DAAB10071F5CE /* MarketGridViewController.swift */,
-				411376E8292DB3A900AB6D55 /* MarketGridCell.swift */,
 			);
-			path = MainView;
+			path = MainViewController;
 			sourceTree = "<group>";
 		};
-		410573CA2938E170000D01EE /* RegisterView */ = {
+		410573CA2938E170000D01EE /* RegisterationViewController */ = {
 			isa = PBXGroup;
 			children = (
 				410573CD2938E1C7000D01EE /* RegistrationViewController.swift */,
 			);
-			path = RegisterView;
+			path = RegisterationViewController;
 			sourceTree = "<group>";
 		};
 		411376EC292DE1CF00AB6D55 /* Extension */ = {
@@ -173,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				86208A65292F5FB900DD7C1C /* ImageCache */,
-				418C67E629250D68009051E2 /* DataType */,
+				418C67E629250D68009051E2 /* DTO */,
 				418C67E329250CDC009051E2 /* URLSession */,
 				418C67E229250C97009051E2 /* Extension */,
 			);
@@ -184,13 +186,11 @@
 			isa = PBXGroup;
 			children = (
 				C70FB10525BEF61D00C9924E /* LaunchScreen.storyboard */,
-				C70FB10025BEF61C00C9924E /* Main.storyboard */,
-				413CA8752939876E004F9D46 /* RegistrationView.swift */,
-				8640489A29399119001F00B8 /* ImageCollectionViewCell.swift */,
-				413CA8792939C64D004F9D46 /* CustomTextField.swift */,
-				8640489C293A2171001F00B8 /* CustomStackView.swift */,
-				414F9A94293D9190006F9A04 /* UIImage+Extension.swift */,
-				864048C929401F27001F00B8 /* CustomAlert.swift */,
+				41C61D972943810500D5DA92 /* MainView */,
+				41C61D982943811400D5DA92 /* RegisterationView */,
+				41C61D9B2943821C00D5DA92 /* DetailView */,
+				41C61D9A2943815F00D5DA92 /* Custom */,
+				41C61D992943814200D5DA92 /* Extension */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,8 +198,9 @@
 		418C67E129250C18009051E2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				410573CA2938E170000D01EE /* RegisterView */,
-				410573C92938E168000D01EE /* MainView */,
+				410573C92938E168000D01EE /* MainViewController */,
+				410573CA2938E170000D01EE /* RegisterationViewController */,
+				41C61D9E29438C4000D5DA92 /* DetailViewController */,
 				411376EC292DE1CF00AB6D55 /* Extension */,
 			);
 			path = ViewController;
@@ -226,7 +227,7 @@
 			path = URLSession;
 			sourceTree = "<group>";
 		};
-		418C67E629250D68009051E2 /* DataType */ = {
+		418C67E629250D68009051E2 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
 				86F0E0272923245600188086 /* Market.swift */,
@@ -234,7 +235,7 @@
 				410573C3293836B7000D01EE /* Product.swift */,
 				410573C5293836EE000D01EE /* Currency.swift */,
 			);
-			path = DataType;
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		418C67E729250D8D009051E2 /* UnitTest */ = {
@@ -244,6 +245,59 @@
 				418C67D52924D30E009051E2 /* MockURLSessionTests */,
 			);
 			path = UnitTest;
+			sourceTree = "<group>";
+		};
+		41C61D972943810500D5DA92 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				C70FB10025BEF61C00C9924E /* Main.storyboard */,
+				41BA5BF8292C9CB200EAED05 /* MarketListCell.swift */,
+				411376E8292DB3A900AB6D55 /* MarketGridCell.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		41C61D982943811400D5DA92 /* RegisterationView */ = {
+			isa = PBXGroup;
+			children = (
+				413CA8752939876E004F9D46 /* RegistrationView.swift */,
+				8640489A29399119001F00B8 /* ImageCollectionViewCell.swift */,
+			);
+			path = RegisterationView;
+			sourceTree = "<group>";
+		};
+		41C61D992943814200D5DA92 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				414F9A94293D9190006F9A04 /* UIImage+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		41C61D9A2943815F00D5DA92 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				413CA8792939C64D004F9D46 /* CustomTextField.swift */,
+				8640489C293A2171001F00B8 /* CustomStackView.swift */,
+				864048C929401F27001F00B8 /* CustomAlert.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		41C61D9B2943821C00D5DA92 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				41C61D9C2943835F00D5DA92 /* DetailView.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		41C61D9E29438C4000D5DA92 /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				41C61D9F29438C6500D5DA92 /* DetailViewController.swift */,
+			);
+			path = DetailViewController;
 			sourceTree = "<group>";
 		};
 		86208A65292F5FB900DD7C1C /* ImageCache */ = {
@@ -455,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				864DE0392926300C0025547E /* MockHTTPURLResponse.swift in Sources */,
+				41C61DA029438C6500D5DA92 /* DetailViewController.swift in Sources */,
 				410573CE2938E1C7000D01EE /* RegistrationViewController.swift in Sources */,
 				416AF3972924B476002CD10C /* MockURLSession.swift in Sources */,
 				411376E9292DB3A900AB6D55 /* MarketGridCell.swift in Sources */,
@@ -470,6 +525,7 @@
 				8640489D293A2171001F00B8 /* CustomStackView.swift in Sources */,
 				86F0E0422924B35A00188086 /* MockURLSessionDataTask.swift in Sources */,
 				413CA8762939876E004F9D46 /* RegistrationView.swift in Sources */,
+				41C61D9D2943835F00D5DA92 /* DetailView.swift in Sources */,
 				4171DE0F292DAAB10071F5CE /* MarketGridViewController.swift in Sources */,
 				410573C6293836EE000D01EE /* Currency.swift in Sources */,
 				410573C4293836B7000D01EE /* Product.swift in Sources */,

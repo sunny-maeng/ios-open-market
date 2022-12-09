@@ -41,6 +41,7 @@ final class MarketGridViewController: UIViewController {
                     self.setupGridLayout()
                     self.configureDataSource()
                     self.applySnapshot()
+                    self.gridView.delegate = self
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -108,6 +109,12 @@ final class MarketGridViewController: UIViewController {
         snapshot.appendSections([.productGrid])
         snapshot.appendItems(pageData)
         dataSource?.apply(snapshot)
+    }
+}
+
+extension MarketGridViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(DetailViewController(), animated: true)
     }
 }
 
