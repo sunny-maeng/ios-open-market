@@ -19,7 +19,7 @@ class RegistrationViewController: UIViewController {
         setupNavigationBar()
         controlKeyBoard()
         
-        registrationView.textView.delegate = self
+        registrationView.productDescriptionTextView.delegate = self
         registrationView.mainScrollView.delegate = self
         registrationView.imageCollectionView.delegate = self
         registrationView.imageCollectionView.dataSource = self
@@ -141,7 +141,7 @@ extension RegistrationViewController {
     }
     
     private func checkProductDescriptionInput() -> String? {
-        guard let description = registrationView.textView.text,
+        guard let description = registrationView.productDescriptionTextView.text,
               description.count >= 10,
               description.count <= 1000 else {
             CustomAlert.showAlert(message: "상세내용은 10~1000자 이내로 입력해야 합니다", target: self)
@@ -267,7 +267,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
         
         self.registrationView.mainScrollView.contentInset.bottom = keyboardHeight
         
-        if self.registrationView.textView.isFirstResponder {
+        if self.registrationView.productDescriptionTextView.isFirstResponder {
             self.registrationView.mainScrollView.contentOffset.y += keyboardHeight
         }
     }
@@ -301,7 +301,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
             $0.inputAccessoryView = toolBar
         }
         
-        registrationView.textView.inputAccessoryView = toolBar
+        registrationView.productDescriptionTextView.inputAccessoryView = toolBar
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){

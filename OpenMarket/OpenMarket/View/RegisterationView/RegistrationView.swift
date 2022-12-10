@@ -41,7 +41,7 @@ class RegistrationView: UIView {
         return segmentedControl
     }()
     
-    private(set) var textView: UITextView = {
+    private(set) var productDescriptionTextView: UITextView = {
         let textView = UITextView()
         
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -98,7 +98,7 @@ class RegistrationView: UIView {
         
         [imageCollectionView,
          fieldStackView,
-         textView].forEach {
+         productDescriptionTextView].forEach {
             mainStackView.addArrangedSubview($0)
         }
         

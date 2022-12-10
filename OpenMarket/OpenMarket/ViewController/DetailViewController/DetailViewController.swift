@@ -12,19 +12,27 @@ class DetailViewController: UIViewController {
     var page: Page?
     var detailView: DetailView!
     
+    init(pageId: Int) {
+        self.pageId = pageId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         detailView = DetailView()
         self.view = detailView
         fetchPageData(of: pageId)
-        
         self.detailView.imageCollectionView.delegate = self
         self.detailView.imageCollectionView.register(
             DetailImageCell.self,
             forCellWithReuseIdentifier: DetailImageCell.identifier)
         self.setupNavigationBar()
     }
-    
+
     private func setupNavigationBar() {
         let actionImage = UIImage(systemName: "square.and.arrow.up")
         let button = UIBarButtonItem(image: actionImage,
@@ -34,6 +42,29 @@ class DetailViewController: UIViewController {
         
         navigationItem.title = "상품상세"
         navigationItem.rightBarButtonItem  = button
+    }
+    
+    @objc func showEditOrDeleteActionSheet() {
+        let alert = UIAlertController()
+        let editAction = UIAlertAction(title: "수정", style: .default) { _ in
+            guard let page = self.page else { return }
+
+            self.navigationController?.pushViewController(
+                EditRegistrationViewController(page: page),
+                animated: true)
+        }
+        
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
+            //delete action 구현 예정
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        [editAction, deleteAction, cancelAction].forEach {
+            alert.addAction($0)
+        }
+        
+        present(alert, animated: true)
     }
     
     func configureDetailView() {
@@ -46,29 +77,7 @@ class DetailViewController: UIViewController {
         configureStockLabel()
         configurePriceLabel()
     }
-    
-    @objc func showEditOrDeleteActionSheet() {
-        let alert = UIAlertController()
-        let editAction = UIAlertAction(title: "수정", style: .default)
-        let deleteAction = UIAlertAction(title: "삭제", style: .destructive)
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-        
-        [editAction, deleteAction, cancelAction].forEach {
-            alert.addAction($0)
-        }
-        
-        present(alert, animated: true)
-    }
-    
-    init(pageId: Int) {
-        self.pageId = pageId
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     func fetchPageData(of pageId: Int) {
         let marketURLSessionProvider = MarketURLSessionProvider()
         
