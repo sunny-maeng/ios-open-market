@@ -9,10 +9,14 @@ import UIKit
 
 class CustomLabel: UILabel {
     init(textAlignment: NSTextAlignment = .left,
-         font: UIFont = .preferredFont(forTextStyle: .body)) {
+         font: UIFont = .preferredFont(forTextStyle: .body),
+         numberOfLines: Int = 1,
+         textColor: UIColor = .black) {
         super.init(frame: .zero)
         self.textAlignment = textAlignment
         self.font = font
+        self.numberOfLines = numberOfLines
+        self.textColor = textColor
         translatesAutoresizingMaskIntoConstraints = false
     }
     

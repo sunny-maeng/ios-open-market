@@ -20,11 +20,13 @@ final class DetailView: UIView {
         return collectionView
     }()
     
-    let productNameLabel: CustomLabel = CustomLabel(font: .preferredFont(forTextStyle: .title2))
+    let productNameLabel: CustomLabel = CustomLabel(font: .systemFont(ofSize: 25, weight: .medium))
     let stockLabel: CustomLabel = CustomLabel(textAlignment: .right,
-                                              font: .preferredFont(forTextStyle: .body))
+                                              font: .systemFont(ofSize: 20, weight: .light),
+                                              textColor: .systemGray)
     let priceLabel: CustomLabel = CustomLabel(textAlignment: .right,
-                                              font: .preferredFont(forTextStyle: .body))
+                                              font: .systemFont(ofSize: 20, weight: .regular),
+                                              numberOfLines: 0)
     let descriptionTextView: UITextView = {
         let textView = UITextView()
         
@@ -41,9 +43,10 @@ final class DetailView: UIView {
                                                                   spacing: 10)
     
     let nameAndStockAndPriceStackView: CustomStackView = CustomStackView(axis: .horizontal,
-                                                                  spacing: 10)
+                                                                         alignment: .top,
+                                                                         spacing: 5)
     let mainStackView: CustomStackView = CustomStackView(axis: .vertical,
-                                                        spacing: 10)
+                                                         spacing: 10)
     let mainScrollView: UIScrollView = {
         let scrollview = UIScrollView()
 
@@ -82,8 +85,8 @@ final class DetailView: UIView {
         }
         
         mainScrollView.addSubview(mainStackView)
-        
         self.addSubview(mainScrollView)
+        stockLabel.setContentHuggingPriority(.init(rawValue: 1), for: .vertical)
         
         NSLayoutConstraint.activate([
             imageCollectionView.topAnchor.constraint(
@@ -97,11 +100,7 @@ final class DetailView: UIView {
             productNameLabel.widthAnchor.constraint(
                 greaterThanOrEqualTo: self.mainStackView.widthAnchor,
                 multiplier: 0.6),
-            
-            nameAndStockAndPriceStackView.heightAnchor.constraint(
-                equalTo: self.safeAreaLayoutGuide.heightAnchor,
-                multiplier: 0.15),
-            
+ 
             descriptionTextView.bottomAnchor.constraint(
                 equalTo: mainScrollView.bottomAnchor),
             

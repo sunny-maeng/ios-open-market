@@ -91,7 +91,7 @@ final class MarketListCell: UICollectionViewListCell {
     }
     
     private func generatePriceLabelContent(page: Page) -> NSAttributedString {
-        if page.bargainPrice > 0  {
+        if page.discountedPrice > 0  {
             return NSMutableAttributedString()
                 .strikethrough(string: "\(page.currency.rawValue) \(page.price)")
                 .normal(string: "\n\(page.currency.rawValue) \(page.bargainPrice)")

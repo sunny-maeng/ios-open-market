@@ -42,9 +42,9 @@ class DetailViewController: UIViewController {
         }
         
         detailView.productNameLabel.text = page?.name
-        detailView.stockLabel.text = String(page?.stock ?? 0)
-        detailView.priceLabel.text = "\(page?.price ?? 0)\n\(page?.bargainPrice ?? 0)"
         detailView.descriptionTextView.text = page?.description
+        configureStockLabel()
+        configurePriceLabel()
     }
     
     @objc func showEditOrDeleteActionSheet() {
@@ -85,6 +85,31 @@ class DetailViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func configurePriceLabel() {
+        guard let page = page else {
+            return
+        }
+
+        if page.discountedPrice > 0  {
+            detailView.priceLabel.attributedText = NSMutableAttributedString()
+                .strikethrough(string: "\(page.currency.rawValue) \(page.price)")
+                .normal(string: "\n\(page.currency.rawValue) \(page.bargainPrice)")
+        } else {
+            detailView.priceLabel.attributedText = NSMutableAttributedString()
+                .normal(string: "\(page.currency.rawValue) \(page.price)")
+        }
+    }
+    
+    private func configureStockLabel() {
+        if page?.stock == 0 {
+            detailView.stockLabel.attributedText = NSMutableAttributedString()
+                .orangeColor(string: "품절")
+        } else {
+            detailView.stockLabel.attributedText = NSMutableAttributedString()
+                .normal(string: "남은 수량: \(page?.stock ?? 0)")
         }
     }
 }

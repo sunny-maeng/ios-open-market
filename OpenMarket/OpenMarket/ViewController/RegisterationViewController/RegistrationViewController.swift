@@ -113,7 +113,7 @@ extension RegistrationViewController {
     }
     
     private func checkProductDiscountedPriceInput() -> Double? {
-        if registrationView.productDiscountPriceTextField.text == nil {
+        if registrationView.productDiscountPriceTextField.text == "" {
             registrationView.productDiscountPriceTextField.text = "0"
         }
         

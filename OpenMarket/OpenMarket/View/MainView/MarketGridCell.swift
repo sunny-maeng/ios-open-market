@@ -89,7 +89,7 @@ final class MarketGridCell: UICollectionViewCell {
     }
     
     private func generatePriceLabelContent(page: Page) {
-        if page.bargainPrice > 0  {
+        if page.discountedPrice > 0  {
             priceLabel.attributedText = NSMutableAttributedString()
                 .strikethrough(string: "\(page.currency.rawValue) \(page.price)")
                 .normal(string: "\n\(page.currency.rawValue) \(page.bargainPrice)")
