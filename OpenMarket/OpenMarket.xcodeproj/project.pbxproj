@@ -29,8 +29,9 @@
 		41C61DA029438C6500D5DA92 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C61D9F29438C6500D5DA92 /* DetailViewController.swift */; };
 		41C61DA2294394FA00D5DA92 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C61DA1294394FA00D5DA92 /* CustomLabel.swift */; };
 		41D3D7772924814B00C86A9A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D3D7762924814B00C86A9A /* SampleData.swift */; };
+		41EA278E294419FE0043459E /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EA278D294419FE0043459E /* DetailImageCell.swift */; };
 		86208A67292F5FEA00DD7C1C /* ImageCacheProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86208A66292F5FEA00DD7C1C /* ImageCacheProvider.swift */; };
-		8640489B29399119001F00B8 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640489A29399119001F00B8 /* ImageCollectionViewCell.swift */; };
+		8640489B29399119001F00B8 /* RegisterImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640489A29399119001F00B8 /* RegisterImageCell.swift */; };
 		8640489D293A2171001F00B8 /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640489C293A2171001F00B8 /* CustomStackView.swift */; };
 		864048CA29401F27001F00B8 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864048C929401F27001F00B8 /* CustomAlert.swift */; };
 		864DE0392926300C0025547E /* MockHTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DE0382926300C0025547E /* MockHTTPURLResponse.swift */; };
@@ -90,8 +91,9 @@
 		41C61D9F29438C6500D5DA92 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		41C61DA1294394FA00D5DA92 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		41D3D7762924814B00C86A9A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		41EA278D294419FE0043459E /* DetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
 		86208A66292F5FEA00DD7C1C /* ImageCacheProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheProvider.swift; sourceTree = "<group>"; };
-		8640489A29399119001F00B8 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		8640489A29399119001F00B8 /* RegisterImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterImageCell.swift; sourceTree = "<group>"; };
 		8640489C293A2171001F00B8 /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
 		864048C929401F27001F00B8 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		864DE0382926300C0025547E /* MockHTTPURLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHTTPURLResponse.swift; sourceTree = "<group>"; };
@@ -263,7 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				413CA8752939876E004F9D46 /* RegistrationView.swift */,
-				8640489A29399119001F00B8 /* ImageCollectionViewCell.swift */,
+				8640489A29399119001F00B8 /* RegisterImageCell.swift */,
 			);
 			path = RegisterationView;
 			sourceTree = "<group>";
@@ -291,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				41C61D9C2943835F00D5DA92 /* DetailView.swift */,
+				41EA278D294419FE0043459E /* DetailImageCell.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -523,7 +526,7 @@
 				411376EB292DE16E00AB6D55 /* NSMutableAttributedString+Extension.swift in Sources */,
 				86208A67292F5FEA00DD7C1C /* ImageCacheProvider.swift in Sources */,
 				41D3D7772924814B00C86A9A /* SampleData.swift in Sources */,
-				8640489B29399119001F00B8 /* ImageCollectionViewCell.swift in Sources */,
+				8640489B29399119001F00B8 /* RegisterImageCell.swift in Sources */,
 				41B6E8A82923BDD900CBF91D /* DateFormatter+Extension.swift in Sources */,
 				8640489D293A2171001F00B8 /* CustomStackView.swift in Sources */,
 				86F0E0422924B35A00188086 /* MockURLSessionDataTask.swift in Sources */,
@@ -545,6 +548,7 @@
 				41C61DA2294394FA00D5DA92 /* CustomLabel.swift in Sources */,
 				413CA87C2939CE21004F9D46 /* String+Extension.swift in Sources */,
 				86F0E0552925115000188086 /* Page.swift in Sources */,
+				41EA278E294419FE0043459E /* DetailImageCell.swift in Sources */,
 				864048CA29401F27001F00B8 /* CustomAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

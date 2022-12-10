@@ -95,7 +95,9 @@ final class MarketListViewController: UIViewController {
 
 extension MarketListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(DetailViewController(), animated: true)
+        let pageId = pageData[indexPath.item].id
+        let detailViewController = DetailViewController(pageId: pageId)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 

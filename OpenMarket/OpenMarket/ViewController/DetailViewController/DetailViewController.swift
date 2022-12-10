@@ -8,11 +8,21 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    let pageId: Int
+    var page: Page?
+    var detailView: DetailView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = DetailView(frame: .zero)
-        setupNavigationBar()
+        detailView = DetailView()
+        self.view = detailView
+        fetchPageData(of: pageId)
+        
+        self.detailView.imageCollectionView.delegate = self
+        self.detailView.imageCollectionView.register(
+            DetailImageCell.self,
+            forCellWithReuseIdentifier: DetailImageCell.identifier)
+        self.setupNavigationBar()
     }
     
     private func setupNavigationBar() {
@@ -26,8 +36,85 @@ class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem  = button
     }
     
+    func configureDetialView() {
+        guard let detailView = detailView else {
+            return
+        }
+        
+        detailView.productNameLabel.text = page?.name
+        detailView.stockLabel.text = String(page?.stock ?? 0)
+        detailView.priceLabel.text = "\(page?.price ?? 0)\n\(page?.bargainPrice ?? 0)"
+        detailView.descriptionTextView.text = page?.description
+    }
+    
     @objc func showEditOrDeleteActionSheet() {
         
     }
+    
+    init(pageId: Int) {
+        self.pageId = pageId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func fetchPageData(of pageId: Int) {
+        let marketURLSessionProvider = MarketURLSessionProvider()
+        
+        guard let url = Request.productDetail(productNumber: pageId).url else {
+            print(NetworkError.generateUrlFailError)
+            return
+        }
+        
+        marketURLSessionProvider.fetchData(request: URLRequest(url: url)) { result in
+            switch result {
+            case .success(let data):
+                guard let pageData = JSONDecoder.decodeFromSnakeCase(type: Page.self,
+                                                                     from: data) else {
+                    print(NetworkError.dataDecodingFailError.localizedDescription)
+                    return
+                }
+                
+                self.page = pageData
+                DispatchQueue.main.async {
+                    self.detailView.imageCollectionView.dataSource = self
+                    self.configureDetialView()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
 
+extension DetailViewController: UICollectionViewDelegate,
+                                UICollectionViewDataSource,
+                                UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return page?.images?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: DetailImageCell.identifier,
+            for: indexPath) as? DetailImageCell,
+              let page = page else {
+            return UICollectionViewCell()
+        }
+ 
+        cell.fetchImage(page: page, index: indexPath.item)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width,
+                      height: collectionView.frame.height)
+    }
 }

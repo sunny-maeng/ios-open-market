@@ -2,21 +2,21 @@
 //  DetailView.swift
 //  OpenMarket
 //
-//  Created by 맹선아 on 2022/12/09.
+//  Created by 써니쿠키 on 2022/12/09.
 //
 
 import UIKit
 
 final class DetailView: UIView {
-    let imagesCollectionView: UICollectionView = {
+    let imageCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         
         flowLayout.scrollDirection = .horizontal
-        flowLayout.sectionInset = .init(top: 10, left: 10, bottom: 10, right: 10)
 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-
+        collectionView.showsHorizontalScrollIndicator = false
+  
         return collectionView
     }()
     
@@ -29,7 +29,7 @@ final class DetailView: UIView {
         let textView = UITextView()
         
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.isScrollEnabled = true
+        textView.isScrollEnabled = false
         textView.font = .preferredFont(forTextStyle: .body)
         
         return textView
@@ -58,11 +58,6 @@ final class DetailView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .systemBackground
         setupLayout()
-        //test
-//        priceLabel.text = "productPrice"
-//        productNameLabel.text = "productName"
-//        stockLabel.text = "producStock"
-//        descriptionTextView.text = "description"
     }
     
     required init?(coder: NSCoder) {
@@ -80,8 +75,8 @@ final class DetailView: UIView {
             nameAndStockAndPriceStackView.addArrangedSubview($0)
         }
         
-        [imagesCollectionView,
-        nameAndStockAndPriceStackView,
+        [imageCollectionView,
+         nameAndStockAndPriceStackView,
          descriptionTextView].forEach {
             mainStackView.addArrangedSubview($0)
         }
@@ -91,15 +86,13 @@ final class DetailView: UIView {
         self.addSubview(mainScrollView)
         
         NSLayoutConstraint.activate([
-            imagesCollectionView.topAnchor.constraint(
+            imageCollectionView.topAnchor.constraint(
                 equalTo: mainStackView.topAnchor),
-            imagesCollectionView.leadingAnchor.constraint(
+            imageCollectionView.leadingAnchor.constraint(
                 equalTo: mainStackView.leadingAnchor),
-            imagesCollectionView.trailingAnchor.constraint(
+            imageCollectionView.trailingAnchor.constraint(
                 equalTo: mainStackView.trailingAnchor),
-            imagesCollectionView.heightAnchor.constraint(
-                equalTo: self.safeAreaLayoutGuide.heightAnchor,
-                multiplier: 0.4),
+            imageCollectionView.heightAnchor.constraint(equalTo: imageCollectionView.widthAnchor, multiplier: 1.1),
             
             productNameLabel.widthAnchor.constraint(
                 greaterThanOrEqualTo: self.mainStackView.widthAnchor,
@@ -109,14 +102,13 @@ final class DetailView: UIView {
                 equalTo: self.safeAreaLayoutGuide.heightAnchor,
                 multiplier: 0.15),
             
-            descriptionTextView.heightAnchor.constraint(
-                greaterThanOrEqualTo: self.safeAreaLayoutGuide.heightAnchor,
-                multiplier: 0.45),
+            descriptionTextView.bottomAnchor.constraint(
+                equalTo: mainScrollView.bottomAnchor),
             
             mainStackView.leadingAnchor.constraint(
-                equalTo: mainScrollView.frameLayoutGuide.leadingAnchor),
+                equalTo: mainScrollView.leadingAnchor),
             mainStackView.trailingAnchor.constraint(
-                equalTo: mainScrollView.frameLayoutGuide.trailingAnchor),
+                equalTo: mainScrollView.trailingAnchor),
             mainStackView.topAnchor.constraint(
                 equalTo: mainScrollView.topAnchor),
             mainStackView.bottomAnchor.constraint(

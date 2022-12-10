@@ -143,7 +143,7 @@ final class MarketGridCell: UICollectionViewCell {
                         completionHandler(updateImage)
                     }
                 case .failure(let error):
-                    print(error)
+                    print(error.localizedDescription)
                 }
             }
         }

@@ -24,8 +24,8 @@ final class RegistrationViewController: UIViewController {
         registrationView.imageCollectionView.delegate = self
         registrationView.imageCollectionView.dataSource = self
         registrationView.imageCollectionView.register(
-            ImageCollectionViewCell.self,
-            forCellWithReuseIdentifier: ImageCollectionViewCell.identifier
+            RegisterImageCell.self,
+            forCellWithReuseIdentifier: RegisterImageCell.identifier
         )
     }
     
@@ -170,9 +170,9 @@ extension RegistrationViewController: UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ImageCollectionViewCell.identifier,
+            withReuseIdentifier: RegisterImageCell.identifier,
             for: indexPath
-        ) as? ImageCollectionViewCell else {
+        ) as? RegisterImageCell else {
             return UICollectionViewCell()
         }
         
