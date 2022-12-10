@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RegistrationViewController: UIViewController {
+class RegistrationViewController: UIViewController {
     private var registrationView: RegistrationView!
     private var selectedImages: [UIImage] = []
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RegistrationView: UIView {    
+class RegistrationView: UIView {    
     private(set) var imageCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         

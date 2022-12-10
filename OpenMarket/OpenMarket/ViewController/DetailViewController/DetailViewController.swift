@@ -36,7 +36,7 @@ class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem  = button
     }
     
-    func configureDetialView() {
+    func configureDetailView() {
         guard let detailView = detailView else {
             return
         }
@@ -48,7 +48,16 @@ class DetailViewController: UIViewController {
     }
     
     @objc func showEditOrDeleteActionSheet() {
+        let alert = UIAlertController()
+        let editAction = UIAlertAction(title: "수정", style: .default)
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
+        [editAction, deleteAction, cancelAction].forEach {
+            alert.addAction($0)
+        }
+        
+        present(alert, animated: true)
     }
     
     init(pageId: Int) {
@@ -80,7 +89,7 @@ class DetailViewController: UIViewController {
                 self.page = pageData
                 DispatchQueue.main.async {
                     self.detailView.imageCollectionView.dataSource = self
-                    self.configureDetialView()
+                    self.configureDetailView()
                 }
             case .failure(let error):
                 print(error.localizedDescription)

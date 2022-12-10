@@ -30,6 +30,7 @@
 		41C61DA2294394FA00D5DA92 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C61DA1294394FA00D5DA92 /* CustomLabel.swift */; };
 		41D3D7772924814B00C86A9A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D3D7762924814B00C86A9A /* SampleData.swift */; };
 		41EA278E294419FE0043459E /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EA278D294419FE0043459E /* DetailImageCell.swift */; };
+		41EA279F294493450043459E /* EditRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EA279E294493450043459E /* EditRegistrationViewController.swift */; };
 		86208A67292F5FEA00DD7C1C /* ImageCacheProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86208A66292F5FEA00DD7C1C /* ImageCacheProvider.swift */; };
 		8640489B29399119001F00B8 /* RegisterImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640489A29399119001F00B8 /* RegisterImageCell.swift */; };
 		8640489D293A2171001F00B8 /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640489C293A2171001F00B8 /* CustomStackView.swift */; };
@@ -92,6 +93,7 @@
 		41C61DA1294394FA00D5DA92 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		41D3D7762924814B00C86A9A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		41EA278D294419FE0043459E /* DetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
+		41EA279E294493450043459E /* EditRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRegistrationViewController.swift; sourceTree = "<group>"; };
 		86208A66292F5FEA00DD7C1C /* ImageCacheProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheProvider.swift; sourceTree = "<group>"; };
 		8640489A29399119001F00B8 /* RegisterImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterImageCell.swift; sourceTree = "<group>"; };
 		8640489C293A2171001F00B8 /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				410573CD2938E1C7000D01EE /* RegistrationViewController.swift */,
+				41EA279E294493450043459E /* EditRegistrationViewController.swift */,
 			);
 			path = RegisterationViewController;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				410573C4293836B7000D01EE /* Product.swift in Sources */,
 				41B6E8A2292325F100CBF91D /* Decodable+Extension.swift in Sources */,
 				C70FB0FB25BEF61C00C9924E /* AppDelegate.swift in Sources */,
+				41EA279F294493450043459E /* EditRegistrationViewController.swift in Sources */,
 				41BA5BF7292C9BF100EAED05 /* MarketListViewController.swift in Sources */,
 				418C67E529250D1B009051E2 /* Request.swift in Sources */,
 				41B6E8A42923378F00CBF91D /* MarketURLSessionProvider.swift in Sources */,
