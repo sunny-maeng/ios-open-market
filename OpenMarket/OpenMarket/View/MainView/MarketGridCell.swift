@@ -89,13 +89,16 @@ final class MarketGridCell: UICollectionViewCell {
     }
     
     private func generatePriceLabelContent(page: Page) {
+        let price: Any = page.currency == .krw ? Int(page.price) : page.price
+        let bargainPrice: Any = page.currency == .krw ? Int(page.bargainPrice) : page.bargainPrice
+        
         if page.discountedPrice > 0  {
             priceLabel.attributedText = NSMutableAttributedString()
-                .strikethrough(string: "\(page.currency.rawValue) \(page.price)")
-                .normal(string: "\n\(page.currency.rawValue) \(page.bargainPrice)")
+                .strikethrough(string: "\(page.currency.rawValue) \(price)")
+                .normal(string: "\n\(page.currency.rawValue) \(bargainPrice)")
         } else {
             priceLabel.attributedText = NSMutableAttributedString()
-                .normal(string: "\(page.currency.rawValue) \(page.price)")
+                .normal(string: "\(page.currency.rawValue) \(price)")
         }
     }
     

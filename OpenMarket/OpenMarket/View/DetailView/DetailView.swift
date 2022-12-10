@@ -20,7 +20,8 @@ final class DetailView: UIView {
         return collectionView
     }()
     
-    let productNameLabel: CustomLabel = CustomLabel(font: .systemFont(ofSize: 25, weight: .medium))
+    let productNameLabel: CustomLabel = CustomLabel(font: .systemFont(ofSize: 25, weight: .medium),
+                                                    numberOfLines: 0)
     let stockLabel: CustomLabel = CustomLabel(textAlignment: .right,
                                               font: .systemFont(ofSize: 20, weight: .light),
                                               textColor: .systemGray)

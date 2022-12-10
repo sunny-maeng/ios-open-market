@@ -107,17 +107,18 @@ class DetailViewController: UIViewController {
     }
     
     func configurePriceLabel() {
-        guard let page = page else {
-            return
-        }
-
+        guard let page = page else { return }
+        
+        let price: Any = page.currency == .krw ? Int(page.price) : page.price
+        let bargainPrice: Any = page.currency == .krw ? Int(page.bargainPrice) : page.bargainPrice
+        
         if page.discountedPrice > 0  {
             detailView.priceLabel.attributedText = NSMutableAttributedString()
-                .strikethrough(string: "\(page.currency.rawValue) \(page.price)")
-                .normal(string: "\n\(page.currency.rawValue) \(page.bargainPrice)")
+                .strikethrough(string: "\(page.currency.rawValue) \(price)")
+                .normal(string: "\n\(page.currency.rawValue) \(bargainPrice)")
         } else {
             detailView.priceLabel.attributedText = NSMutableAttributedString()
-                .normal(string: "\(page.currency.rawValue) \(page.price)")
+                .normal(string: "\(page.currency.rawValue) \(price)")
         }
     }
     
