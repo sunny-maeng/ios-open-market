@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		410573C4293836B7000D01EE /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410573C3293836B7000D01EE /* Product.swift */; };
 		410573C6293836EE000D01EE /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410573C5293836EE000D01EE /* Currency.swift */; };
-		410573CE2938E1C7000D01EE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410573CD2938E1C7000D01EE /* RegistrationViewController.swift */; };
+		410573CE2938E1C7000D01EE /* NewRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410573CD2938E1C7000D01EE /* NewRegistrationViewController.swift */; };
 		411376E9292DB3A900AB6D55 /* MarketGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411376E8292DB3A900AB6D55 /* MarketGridCell.swift */; };
 		411376EB292DE16E00AB6D55 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411376EA292DE16E00AB6D55 /* NSMutableAttributedString+Extension.swift */; };
 		413CA8762939876E004F9D46 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413CA8752939876E004F9D46 /* RegistrationView.swift */; };
@@ -31,6 +31,7 @@
 		41D3D7772924814B00C86A9A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D3D7762924814B00C86A9A /* SampleData.swift */; };
 		41EA278E294419FE0043459E /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EA278D294419FE0043459E /* DetailImageCell.swift */; };
 		41EA279F294493450043459E /* EditRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EA279E294493450043459E /* EditRegistrationViewController.swift */; };
+		41EA27A12944AD900043459E /* RegistrationViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EA27A02944AD900043459E /* RegistrationViewControllerProtocol.swift */; };
 		86208A67292F5FEA00DD7C1C /* ImageCacheProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86208A66292F5FEA00DD7C1C /* ImageCacheProvider.swift */; };
 		8640489B29399119001F00B8 /* RegisterImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640489A29399119001F00B8 /* RegisterImageCell.swift */; };
 		8640489D293A2171001F00B8 /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640489C293A2171001F00B8 /* CustomStackView.swift */; };
@@ -71,7 +72,7 @@
 /* Begin PBXFileReference section */
 		410573C3293836B7000D01EE /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		410573C5293836EE000D01EE /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
-		410573CD2938E1C7000D01EE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		410573CD2938E1C7000D01EE /* NewRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegistrationViewController.swift; sourceTree = "<group>"; };
 		411376E8292DB3A900AB6D55 /* MarketGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketGridCell.swift; sourceTree = "<group>"; };
 		411376EA292DE16E00AB6D55 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		413CA8752939876E004F9D46 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		41D3D7762924814B00C86A9A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		41EA278D294419FE0043459E /* DetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
 		41EA279E294493450043459E /* EditRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRegistrationViewController.swift; sourceTree = "<group>"; };
+		41EA27A02944AD900043459E /* RegistrationViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewControllerProtocol.swift; sourceTree = "<group>"; };
 		86208A66292F5FEA00DD7C1C /* ImageCacheProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheProvider.swift; sourceTree = "<group>"; };
 		8640489A29399119001F00B8 /* RegisterImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterImageCell.swift; sourceTree = "<group>"; };
 		8640489C293A2171001F00B8 /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
@@ -155,7 +157,8 @@
 		410573CA2938E170000D01EE /* RegisterationViewController */ = {
 			isa = PBXGroup;
 			children = (
-				410573CD2938E1C7000D01EE /* RegistrationViewController.swift */,
+				41EA27A02944AD900043459E /* RegistrationViewControllerProtocol.swift */,
+				410573CD2938E1C7000D01EE /* NewRegistrationViewController.swift */,
 				41EA279E294493450043459E /* EditRegistrationViewController.swift */,
 			);
 			path = RegisterationViewController;
@@ -519,7 +522,7 @@
 			files = (
 				864DE0392926300C0025547E /* MockHTTPURLResponse.swift in Sources */,
 				41C61DA029438C6500D5DA92 /* DetailViewController.swift in Sources */,
-				410573CE2938E1C7000D01EE /* RegistrationViewController.swift in Sources */,
+				410573CE2938E1C7000D01EE /* NewRegistrationViewController.swift in Sources */,
 				416AF3972924B476002CD10C /* MockURLSession.swift in Sources */,
 				411376E9292DB3A900AB6D55 /* MarketGridCell.swift in Sources */,
 				86F0E04029247DFA00188086 /* URLSessionProtocol.swift in Sources */,
@@ -554,6 +557,7 @@
 				86F0E0552925115000188086 /* Page.swift in Sources */,
 				41EA278E294419FE0043459E /* DetailImageCell.swift in Sources */,
 				864048CA29401F27001F00B8 /* CustomAlert.swift in Sources */,
+				41EA27A12944AD900043459E /* RegistrationViewControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class EditRegistrationViewController: UIViewController {
+class EditRegistrationViewController: UIViewController, registrationViewController {
     let page: Page
-    private var editRegistrationView: RegistrationView!
+    var registrationView: RegistrationView!
     
     init(page: Page) {
         self.page = page
@@ -23,17 +23,17 @@ class EditRegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        editRegistrationView = RegistrationView()
-        self.view = editRegistrationView
+        registrationView = RegistrationView()
+        self.view = registrationView
         setupNavigationBar()
         controlKeyBoard()
         configureEditRegistrationView()
         
-        editRegistrationView.productDescriptionTextView.delegate = self
-        editRegistrationView.mainScrollView.delegate = self
-        editRegistrationView.imageCollectionView.delegate = self
-        editRegistrationView.imageCollectionView.dataSource = self
-        editRegistrationView.imageCollectionView.register(
+        registrationView.productDescriptionTextView.delegate = self
+        registrationView.mainScrollView.delegate = self
+        registrationView.imageCollectionView.delegate = self
+        registrationView.imageCollectionView.dataSource = self
+        registrationView.imageCollectionView.register(
             RegisterImageCell.self,
             forCellWithReuseIdentifier: RegisterImageCell.identifier
         )
@@ -54,7 +54,7 @@ class EditRegistrationViewController: UIViewController {
     }
     
     func configureEditRegistrationView() {
-        guard let editRegistrationView = editRegistrationView else {
+        guard let editRegistrationView = registrationView else {
             return
         }
         
@@ -66,75 +66,6 @@ class EditRegistrationViewController: UIViewController {
         editRegistrationView.stockTextField.text = String(page.stock)
         editRegistrationView.currencySegmentControl.selectedSegmentIndex =
         page.currency == Currency.krw ? 0 : 1
-    }
-}
-
-//MARK: - check UserInput is available
-extension EditRegistrationViewController {
-    private func checkProductNameInput() -> String? {
-        guard let name = editRegistrationView.productNameTextField.text,
-              name.count >= 3,
-              name.count <= 100 else {
-            CustomAlert.showAlert(message: "상품명은 3~100자로 입력해 주세요", target: self)
-            return nil
-        }
-        
-        return name
-    }
-    
-    private func checkProductPriceInput() -> Double? {
-        guard let priceInput = editRegistrationView.productPriceTextField.text,
-              let price = Double(priceInput) else {
-            CustomAlert.showAlert(message: "가격을 확인해 주세요", target: self)
-            return nil
-        }
-        
-        return price
-    }
-    
-    private func checkProductDiscountedPriceInput() -> Double? {
-        if editRegistrationView.productDiscountPriceTextField.text == "" {
-            editRegistrationView.productDiscountPriceTextField.text = "0"
-        }
-        
-        guard let discountedPriceInput = editRegistrationView.productDiscountPriceTextField.text,
-              let discountedPrice = Double(discountedPriceInput) else {
-            CustomAlert.showAlert(message: "할인 가격을 확인해 주세요", target: self)
-            return nil
-        }
-        
-        return discountedPrice
-    }
-    
-    private func checkProductStockInput() -> Int? {
-        if editRegistrationView.stockTextField.text == nil {
-            editRegistrationView.stockTextField.text = "0"
-        }
-        
-        guard let stockInput = editRegistrationView.stockTextField.text,
-              let stock = Int(stockInput) else {
-            CustomAlert.showAlert(message: "재고 입력을 확인해 주세요", target: self)
-            return nil
-        }
-        
-        return stock
-    }
-    
-    private func checkProductDescriptionInput() -> String? {
-        guard let description = editRegistrationView.productDescriptionTextView.text,
-              description.count >= 10,
-              description.count <= 1000 else {
-            CustomAlert.showAlert(message: "상세내용은 10~1000자 이내로 입력해야 합니다", target: self)
-            return nil
-        }
-        
-        return description
-    }
-    
-    private func checkProductCurrencyInput() -> Currency {
-        return editRegistrationView.currencySegmentControl.selectedSegmentIndex == 0
-        ? Currency.krw
-        : Currency.usd
     }
 }
 
@@ -174,7 +105,7 @@ extension EditRegistrationViewController: UIScrollViewDelegate {
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                                 action: #selector(hideKeyBoard))
         
-        editRegistrationView.fieldStackView.addGestureRecognizer(singleTapGestureRecognizer)
+        registrationView.fieldStackView.addGestureRecognizer(singleTapGestureRecognizer)
         addKeyboardNotifications()
         makeDoneButtonToKeyboard()
     }
@@ -191,17 +122,17 @@ extension EditRegistrationViewController: UIScrollViewDelegate {
     }
     
     @objc private func setKeyboardShow(_ notification: Notification) {
-        self.editRegistrationView.mainScrollView.contentOffset.y = 0
+        self.registrationView.mainScrollView.contentOffset.y = 0
         
         guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
                 as? NSValue else { return }
         
         let keyboardHeight = keyboardFrame.cgRectValue.height
         
-        self.editRegistrationView.mainScrollView.contentInset.bottom = keyboardHeight
+        self.registrationView.mainScrollView.contentInset.bottom = keyboardHeight
         
-        if self.editRegistrationView.productDescriptionTextView.isFirstResponder {
-            self.editRegistrationView.mainScrollView.contentOffset.y += keyboardHeight
+        if self.registrationView.productDescriptionTextView.isFirstResponder {
+            self.registrationView.mainScrollView.contentOffset.y += keyboardHeight
         }
     }
     
@@ -211,7 +142,7 @@ extension EditRegistrationViewController: UIScrollViewDelegate {
         
         let keyboardHeight = keyboardFrame.cgRectValue.height
         
-        self.editRegistrationView.mainScrollView.contentInset.bottom -= keyboardHeight
+        self.registrationView.mainScrollView.contentInset.bottom -= keyboardHeight
     }
     
     @objc private func hideKeyBoard() {
@@ -227,14 +158,14 @@ extension EditRegistrationViewController: UIScrollViewDelegate {
         toolBar.sizeToFit()
         toolBar.items = [barButton]
         
-        [editRegistrationView.productNameTextField,
-         editRegistrationView.productPriceTextField,
-         editRegistrationView.productDiscountPriceTextField,
-         editRegistrationView.stockTextField].forEach {
+        [registrationView.productNameTextField,
+         registrationView.productPriceTextField,
+         registrationView.productDiscountPriceTextField,
+         registrationView.stockTextField].forEach {
             $0.inputAccessoryView = toolBar
         }
         
-        editRegistrationView.productDescriptionTextView.inputAccessoryView = toolBar
+        registrationView.productDescriptionTextView.inputAccessoryView = toolBar
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){

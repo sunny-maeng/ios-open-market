@@ -50,7 +50,7 @@ final class MainViewController: UIViewController {
     }
     
     @objc func touchUpRegisterButton(_ sender: UIBarButtonItem) {
-        self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
+        self.navigationController?.pushViewController(NewRegistrationViewController(), animated: true)
         navigationItem.backButtonTitle = "Cancel"
     }
 }
