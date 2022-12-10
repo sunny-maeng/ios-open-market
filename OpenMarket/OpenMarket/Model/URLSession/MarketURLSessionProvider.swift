@@ -15,7 +15,7 @@ final class MarketURLSessionProvider {
         self.session = session
     }
     
-    func fetchData(request: URLRequest,
+    func requestDataTask(of request: URLRequest,
                    completionHandler: @escaping (Result<Data, NetworkError>) -> Void) {
         let dataTask = session.dataTask(with: request) { data, response, error in
             guard error == nil else {
@@ -33,29 +33,6 @@ final class MarketURLSessionProvider {
             }
             
             completionHandler(.success(data))
-        }
-        
-        dataTask.resume()
-    }
-    
-    func uploadData(request: URLRequest,
-                    completionHandler: @escaping (Result<Data, NetworkError>) -> Void) {
-        let dataTask = session.dataTask(with: request) { data, response, error in
-            guard error == nil else {
-                return completionHandler(.failure(.requestFailError))
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                return completionHandler(.failure(.httpResponseError(
-                    code: (response as? HTTPURLResponse)?.statusCode ?? 0)))
-            }
-            
-            guard let data = data else {
-                return completionHandler(.failure(.noDataError))
-            }
-            
-            return completionHandler(.success(data))
         }
         
         dataTask.resume()

@@ -86,7 +86,7 @@ class DetailViewController: UIViewController {
             return
         }
         
-        marketURLSessionProvider.fetchData(request: URLRequest(url: url)) { result in
+        marketURLSessionProvider.requestDataTask(of: URLRequest(url: url)) { result in
             switch result {
             case .success(let data):
                 guard let pageData = JSONDecoder.decodeFromSnakeCase(type: Page.self,

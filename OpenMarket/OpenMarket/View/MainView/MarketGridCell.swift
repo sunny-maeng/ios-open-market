@@ -125,7 +125,7 @@ final class MarketGridCell: UICollectionViewCell {
             
             let request = URLRequest(url: imageUrl)
             
-            session.fetchData(request: request) { result in
+            session.requestDataTask(of: request) { result in
                 switch result {
                 case .success(let data):
                     DispatchQueue.main.async {

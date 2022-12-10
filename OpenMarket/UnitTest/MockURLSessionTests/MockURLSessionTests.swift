@@ -31,7 +31,7 @@ class MockURLSessionTests: XCTestCase {
         
         guard let url = URL(string: "url") else { return }
         
-        sut.fetchData(request: URLRequest(url: url)) { result in
+        sut.requestDataTask(of request: URLRequest(url: url)) { result in
             switch result {
             case .success(let market):
                 let marketData = JSONDecoder.decodeFromSnakeCase(type: Market.self, from: market)
@@ -57,7 +57,7 @@ class MockURLSessionTests: XCTestCase {
         
         guard let url = URL(string: "url") else { return }
         
-        sut.fetchData(request: URLRequest(url: url)) { result in
+        sut.requestDataTask(of request: URLRequest(url: url)) { result in
             switch result {
             case .success(_):
                 XCTFail("result is success")

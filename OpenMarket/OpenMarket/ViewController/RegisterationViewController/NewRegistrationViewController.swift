@@ -57,7 +57,7 @@ class NewRegistrationViewController: UIViewController, registrationViewControlle
             return
         }
         
-        marketURLSessionProvider.uploadData(request: request) { result in
+        marketURLSessionProvider.requestDataTask(of: request) { result in
             switch result {
             case .success:
                 DispatchQueue.main.async {

@@ -125,7 +125,7 @@ final class MarketListCell: UICollectionViewListCell {
                 return
             }
             
-            session.fetchData(request: URLRequest(url: imageUrl)) { result in
+            session.requestDataTask(of: URLRequest(url: imageUrl)) { result in
                 switch result {
                 case .success(let data):
                     DispatchQueue.main.async {
