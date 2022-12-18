@@ -231,4 +231,25 @@ extension DetailViewController: UICollectionViewDelegate,
         return CGSize(width: collectionView.frame.width,
                       height: collectionView.frame.height)
     }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        guard let layout = self.detailView.imageCollectionView.collectionViewLayout
+                as? UICollectionViewFlowLayout else { return }
+        let cellWidth = self.detailView.imageCollectionView.frame.width + layout.minimumLineSpacing
+        let estimatedIndex = scrollView.contentOffset.x / cellWidth
+        let index: Int
+        
+        if velocity.x > 0 {
+            index = Int(ceil(estimatedIndex))
+        } else if velocity.x < 0 {
+            index = Int(floor(estimatedIndex))
+        } else {
+            index = Int(round(estimatedIndex))
+        }
+
+       targetContentOffset.pointee = CGPoint(x: CGFloat(index) * cellWidth, y: 0)
+    }
 }
