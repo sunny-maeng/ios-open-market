@@ -152,7 +152,7 @@ extension NewRegistrationViewController: UIImagePickerControllerDelegate,
 
 //MARK: - control Keyboard
 extension NewRegistrationViewController: UIScrollViewDelegate {
-    private func controlKeyBoard () {
+    private func controlKeyBoard() {
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                                 action: #selector(hideKeyBoard))
         

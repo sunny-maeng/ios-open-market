@@ -9,8 +9,7 @@ import Foundation
 
 final class MarketURLSessionProvider {
     private let session: URLSessionProtocol
-    private var market: Market?
-    
+ 
     init(session: URLSessionProtocol = URLSession(configuration: .default)) {
         self.session = session
     }
