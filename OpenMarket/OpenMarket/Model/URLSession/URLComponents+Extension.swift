@@ -8,16 +8,17 @@
 import Foundation
 
 extension URLComponents {
-    static var healthCheckUrl: URL? {
-        return URL(string: "https://openmarket.yagom-academy.kr/healthChecker")
-    }
-    
     static func marketUrl(path: [String]?, queryItems: [URLQueryItem]?) -> URL? {
-        let baseUrl = "https://openmarket.yagom-academy.kr/api/products"
+        let baseUrl = "https://openmarket.yagom-academy.kr"
         var urlComponents = Self(string: baseUrl)
         
         if let path = path {
-            _ = path.map { urlComponents?.path.append("/\($0)") }
+            _ = path.map {
+                if $0.first == "/" {
+                    urlComponents?.path.append(contentsOf: $0)
+                } else {
+                    urlComponents?.path.append("/\($0)") }
+            }
         }
         
         if let queryItems = queryItems {

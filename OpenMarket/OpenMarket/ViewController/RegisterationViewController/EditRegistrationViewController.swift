@@ -50,7 +50,37 @@ class EditRegistrationViewController: UIViewController, registrationViewControll
     }
     
     @objc private func editRegisterProduct() {
+        let marketURLSessionProvider = MarketURLSessionProvider()
+        let encoder = JSONEncoder()
+        let editedProduct = createProductFromUserInput()
         
+        guard let url = Request.productEdit(productId: page.id).url else {
+            print(NetworkError.generateUrlFailError.localizedDescription)
+            return
+        }
+        
+        guard let editedProductData = try? encoder.encode(editedProduct) else {
+            print(NetworkError.parameterEncodingFailError.localizedDescription)
+            return
+        }
+        
+        let request = RequestManager().generateRequest(
+            url: url,
+            httpMethod: .patch,
+            headers: ["identifier": Request.identifier, "Content-Type": "application/json"],
+            bodyData: editedProductData)
+        
+        marketURLSessionProvider.requestDataTask(of: request) { result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                CustomAlert.showAlert(message: "수정 업로드 실패입니다. 다시 시도해 주세요", target: self)
+            }
+        }
     }
     
     func configureEditRegistrationView() {

@@ -49,7 +49,7 @@ class NewRegistrationViewController: UIViewController, registrationViewControlle
             return
         }
         
-        guard let request = marketURLSessionProvider.generateRequest(
+        guard let request = RequestManager().generateMultiPartFormDataRequest(
             textParameters: ["params": productData],
             imageKey: "images",
             images: selectedImages) else {
@@ -68,24 +68,6 @@ class NewRegistrationViewController: UIViewController, registrationViewControlle
                 CustomAlert.showAlert(message: "업로드 실패입니다. 다시 시도해 주세요", target: self)
             }
         }
-    }
-    
-    private func createProductFromUserInput() -> Product? {
-        guard let name = checkProductNameInput(),
-              let price = checkProductPriceInput(),
-              let discountedPrice = checkProductDiscountedPriceInput(),
-              let stock = checkProductStockInput(),
-              let description = checkProductDescriptionInput() else { return nil }
-        
-        let currency = checkProductCurrencyInput()
-        let product = Product(name: name,
-                              price: price,
-                              currency: currency,
-                              discountedPrice: discountedPrice,
-                              stock: stock,
-                              description: description)
-        
-        return product
     }
 }
 

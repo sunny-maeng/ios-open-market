@@ -32,6 +32,11 @@ class DetailViewController: UIViewController {
             forCellWithReuseIdentifier: DetailImageCell.identifier)
         self.setupNavigationBar()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchPageData(of: pageId)
+    }
 
     private func setupNavigationBar() {
         let actionImage = UIImage(systemName: "square.and.arrow.up")
@@ -55,7 +60,7 @@ class DetailViewController: UIViewController {
         }
         
         let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
-            //delete action 구현 예정
+            self.searchProductDeleteUri()
         }
         
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
@@ -66,6 +71,72 @@ class DetailViewController: UIViewController {
         
         present(alert, animated: true)
     }
+ 
+    func searchProductDeleteUri() {
+        let marketURLSessionProvider = MarketURLSessionProvider()
+        
+        guard let url = Request.productDeleteUriInquiry(productId: page?.id ?? 0).url else {
+            print(NetworkError.generateUrlFailError.localizedDescription)
+            return
+        }
+        
+        print(url)
+
+        guard let secretData = try? JSONSerialization.data(
+            withJSONObject: ["secret": "36k448andjvwgavb"]) else {
+            print(NetworkError.parameterEncodingFailError.localizedDescription)
+            return
+        }
+        
+        let request = RequestManager().generateRequest(
+            url: url,
+            httpMethod: .post,
+            headers: ["identifier": Request.identifier, "Content-Type": "application/json"],
+            bodyData: secretData)
+        
+        marketURLSessionProvider.requestDataTask(of: request) { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    guard let uri = String(data: data, encoding: .utf8) else { return }
+                    self.deleteProduct(uri: uri)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                CustomAlert.showAlert(message: "수정 업로드 실패입니다. 다시 시도해 주세요", target: self)
+            }
+        }
+    }
+    
+    func deleteProduct(uri: String) {
+        let marketURLSessionProvider = MarketURLSessionProvider()
+        
+        guard let url = Request.productDelete(url: uri).url else {
+            print(NetworkError.generateUrlFailError.localizedDescription)
+            return
+        }
+        
+        print(url)
+        
+        let request = RequestManager().generateRequest(
+            url: url,
+            httpMethod: .delete,
+            headers: ["identifier": Request.identifier],
+            bodyData: nil)
+    
+        marketURLSessionProvider.requestDataTask(of: request) { result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                CustomAlert.showAlert(message: "삭제 실패입니다. 다시 시도해 주세요", target: self)
+            }
+        }
+    }
+    
     
     func configureDetailView() {
         guard let detailView = detailView else {

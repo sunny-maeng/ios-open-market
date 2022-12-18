@@ -9,6 +9,7 @@ import Foundation
 
 struct Product: Codable {
     var name: String
+    var productId: Int? 
     var price: Double
     var currency: Currency
     var discountedPrice: Double = 0

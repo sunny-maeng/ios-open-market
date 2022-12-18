@@ -14,6 +14,24 @@ protocol registrationViewController: UIViewController {
 
 //MARK: - check UserInput is available
 extension registrationViewController {
+    func createProductFromUserInput() -> Product? {
+        guard let name = checkProductNameInput(),
+              let price = checkProductPriceInput(),
+              let discountedPrice = checkProductDiscountedPriceInput(),
+              let stock = checkProductStockInput(),
+              let description = checkProductDescriptionInput() else { return nil }
+        
+        let currency = checkProductCurrencyInput()
+        let product = Product(name: name,
+                              price: price,
+                              currency: currency,
+                              discountedPrice: discountedPrice,
+                              stock: stock,
+                              description: description)
+        
+        return product
+    }
+    
     func checkProductNameInput() -> String? {
         guard let name = registrationView.productNameTextField.text,
               name.count >= 3,
