@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditRegistrationViewController: UIViewController, registrationViewController {
+final class EditRegistrationViewController: UIViewController, registrationViewController {
     let page: Page
     var registrationView: RegistrationView!
     
@@ -54,6 +54,8 @@ class EditRegistrationViewController: UIViewController, registrationViewControll
         let encoder = JSONEncoder()
         let editedProduct = createProductFromUserInput()
         
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        
         guard let url = Request.productEdit(productId: page.id).url else {
             print(NetworkError.generateUrlFailError.localizedDescription)
             return
@@ -83,7 +85,7 @@ class EditRegistrationViewController: UIViewController, registrationViewControll
         }
     }
     
-    func configureEditRegistrationView() {
+    private func configureEditRegistrationView() {
         guard let editRegistrationView = registrationView else {
             return
         }

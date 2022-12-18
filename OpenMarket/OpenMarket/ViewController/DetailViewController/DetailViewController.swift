@@ -7,10 +7,10 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
-    let pageId: Int
-    var page: Page?
-    var detailView: DetailView!
+final class DetailViewController: UIViewController {
+    private let pageId: Int
+    private var page: Page?
+    private var detailView: DetailView!
     
     init(pageId: Int) {
         self.pageId = pageId
@@ -37,6 +37,34 @@ class DetailViewController: UIViewController {
         super.viewWillAppear(animated)
         fetchPageData(of: pageId)
     }
+    
+    private func fetchPageData(of pageId: Int) {
+        let marketURLSessionProvider = MarketURLSessionProvider()
+        
+        guard let url = Request.productDetail(productNumber: pageId).url else {
+            print(NetworkError.generateUrlFailError)
+            return
+        }
+        
+        marketURLSessionProvider.requestDataTask(of: URLRequest(url: url)) { result in
+            switch result {
+            case .success(let data):
+                guard let pageData = JSONDecoder.decodeFromSnakeCase(type: Page.self,
+                                                                     from: data) else {
+                    print(NetworkError.dataDecodingFailError.localizedDescription)
+                    return
+                }
+                
+                self.page = pageData
+                DispatchQueue.main.async {
+                    self.detailView.imageCollectionView.dataSource = self
+                    self.configureDetailView()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 
     private func setupNavigationBar() {
         let actionImage = UIImage(systemName: "square.and.arrow.up")
@@ -49,7 +77,7 @@ class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem  = button
     }
     
-    @objc func showEditOrDeleteActionSheet() {
+    @objc private func showEditOrDeleteActionSheet() {
         let alert = UIAlertController()
         let editAction = UIAlertAction(title: "수정", style: .default) { _ in
             guard let page = self.page else { return }
@@ -72,7 +100,7 @@ class DetailViewController: UIViewController {
         present(alert, animated: true)
     }
  
-    func searchProductDeleteUri() {
+    private func searchProductDeleteUri() {
         let marketURLSessionProvider = MarketURLSessionProvider()
         
         guard let url = Request.productDeleteUriInquiry(productId: page?.id ?? 0).url else {
@@ -108,7 +136,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func deleteProduct(uri: String) {
+    private func deleteProduct(uri: String) {
         let marketURLSessionProvider = MarketURLSessionProvider()
         
         guard let url = Request.productDelete(url: uri).url else {
@@ -137,8 +165,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    
-    func configureDetailView() {
+    private func configureDetailView() {
         guard let detailView = detailView else {
             return
         }
@@ -149,35 +176,7 @@ class DetailViewController: UIViewController {
         configurePriceLabel()
     }
 
-    func fetchPageData(of pageId: Int) {
-        let marketURLSessionProvider = MarketURLSessionProvider()
-        
-        guard let url = Request.productDetail(productNumber: pageId).url else {
-            print(NetworkError.generateUrlFailError)
-            return
-        }
-        
-        marketURLSessionProvider.requestDataTask(of: URLRequest(url: url)) { result in
-            switch result {
-            case .success(let data):
-                guard let pageData = JSONDecoder.decodeFromSnakeCase(type: Page.self,
-                                                                     from: data) else {
-                    print(NetworkError.dataDecodingFailError.localizedDescription)
-                    return
-                }
-                
-                self.page = pageData
-                DispatchQueue.main.async {
-                    self.detailView.imageCollectionView.dataSource = self
-                    self.configureDetailView()
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func configurePriceLabel() {
+    private func configurePriceLabel() {
         guard let page = page else { return }
         
         let price: Any = page.currency == .krw ? Int(page.price) : page.price

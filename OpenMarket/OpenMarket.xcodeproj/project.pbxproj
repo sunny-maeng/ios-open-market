@@ -184,9 +184,9 @@
 		418C67DF29250C06009051E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				86208A65292F5FB900DD7C1C /* ImageCache */,
 				418C67E629250D68009051E2 /* DTO */,
 				418C67E329250CDC009051E2 /* URLSession */,
+				86208A65292F5FB900DD7C1C /* ImageCache */,
 				418C67E229250C97009051E2 /* Extension */,
 			);
 			path = Model;

@@ -44,6 +44,8 @@ class NewRegistrationViewController: UIViewController, registrationViewControlle
         let encoder = JSONEncoder()
         let product = createProductFromUserInput()
         
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        
         guard let productData = try? encoder.encode(product) else {
             print(NetworkError.parameterEncodingFailError.localizedDescription)
             return
