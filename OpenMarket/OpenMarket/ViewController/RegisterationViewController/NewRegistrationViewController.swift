@@ -1,5 +1,5 @@
 //
-//  RegistrationViewController.swift
+//  NewRegistrationViewController.swift
 //  OpenMarket
 //
 //  Created by 써니쿠키, 메네 on 2022/12/01.
@@ -7,25 +7,25 @@
 
 import UIKit
 
-final class RegistrationViewController: UIViewController {
-    private var registrationView: RegistrationView!
+class NewRegistrationViewController: UIViewController, registrationViewController {
+    var registrationView: RegistrationView!
     private var selectedImages: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         registrationView = RegistrationView()
         self.view = registrationView
         setupNavigationBar()
         controlKeyBoard()
         
-        registrationView.textView.delegate = self
+        registrationView.productDescriptionTextView.delegate = self
         registrationView.mainScrollView.delegate = self
         registrationView.imageCollectionView.delegate = self
         registrationView.imageCollectionView.dataSource = self
         registrationView.imageCollectionView.register(
-            ImageCollectionViewCell.self,
-            forCellWithReuseIdentifier: ImageCollectionViewCell.identifier
+            RegisterImageCell.self,
+            forCellWithReuseIdentifier: RegisterImageCell.identifier
         )
     }
     
@@ -44,12 +44,14 @@ final class RegistrationViewController: UIViewController {
         let encoder = JSONEncoder()
         let product = createProductFromUserInput()
         
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        
         guard let productData = try? encoder.encode(product) else {
             print(NetworkError.parameterEncodingFailError.localizedDescription)
             return
         }
         
-        guard let request = marketURLSessionProvider.generateRequest(
+        guard let request = RequestManager().generateMultiPartFormDataRequest(
             textParameters: ["params": productData],
             imageKey: "images",
             images: selectedImages) else {
@@ -57,7 +59,7 @@ final class RegistrationViewController: UIViewController {
             return
         }
         
-        marketURLSessionProvider.uploadData(request: request) { result in
+        marketURLSessionProvider.requestDataTask(of: request) { result in
             switch result {
             case .success:
                 DispatchQueue.main.async {
@@ -69,99 +71,12 @@ final class RegistrationViewController: UIViewController {
             }
         }
     }
-    
-    private func createProductFromUserInput() -> Product? {
-        guard let name = checkProductNameInput(),
-              let price = checkProductPriceInput(),
-              let discountedPrice = checkProductDiscountedPriceInput(),
-              let stock = checkProductStockInput(),
-              let description = checkProductDescriptionInput() else { return nil }
-        
-        let currency = checkProductCurrencyInput()
-        let product = Product(name: name,
-                              price: price,
-                              currency: currency,
-                              discountedPrice: discountedPrice,
-                              stock: stock,
-                              description: description)
-        
-        return product
-    }
-}
-
-//MARK: - check UserInput is available
-extension RegistrationViewController {
-    private func checkProductNameInput() -> String? {
-        guard let name = registrationView.productNameTextField.text,
-              name.count >= 3,
-              name.count <= 100 else {
-            CustomAlert.showAlert(message: "상품명은 3~100자로 입력해 주세요", target: self)
-            return nil
-        }
-        
-        return name
-    }
-    
-    private func checkProductPriceInput() -> Double? {
-        guard let priceInput = registrationView.productPriceTextField.text,
-              let price = Double(priceInput) else {
-            CustomAlert.showAlert(message: "가격을 확인해 주세요", target: self)
-            return nil
-        }
-        
-        return price
-    }
-    
-    private func checkProductDiscountedPriceInput() -> Double? {
-        if registrationView.productDiscountPriceTextField.text == nil {
-            registrationView.productDiscountPriceTextField.text = "0"
-        }
-        
-        guard let discountedPriceInput = registrationView.productDiscountPriceTextField.text,
-              let discountedPrice = Double(discountedPriceInput) else {
-            CustomAlert.showAlert(message: "할인 가격을 확인해 주세요", target: self)
-            return nil
-        }
-        
-        return discountedPrice
-    }
-    
-    private func checkProductStockInput() -> Int? {
-        if registrationView.stockTextField.text == nil {
-            registrationView.stockTextField.text = "0"
-        }
-        
-        guard let stockInput = registrationView.stockTextField.text,
-              let stock = Int(stockInput) else {
-            CustomAlert.showAlert(message: "재고 입력을 확인해 주세요", target: self)
-            return nil
-        }
-        
-        return stock
-    }
-    
-    private func checkProductDescriptionInput() -> String? {
-        guard let description = registrationView.textView.text,
-              description.count >= 10,
-              description.count <= 1000 else {
-            CustomAlert.showAlert(message: "상세내용은 10~1000자 이내로 입력해야 합니다", target: self)
-            return nil
-        }
-
-        return description
-    }
-    
-    private func checkProductCurrencyInput() -> Currency {
-        return registrationView.currencySegmentControl.selectedSegmentIndex == 0
-        ? Currency.krw
-        : Currency.usd
-    }
 }
 
 //MARK: - CollectionView
-extension RegistrationViewController: UICollectionViewDelegate,
-                                      UICollectionViewDataSource,
-                                      UICollectionViewDelegateFlowLayout {
+extension NewRegistrationViewController: UICollectionViewDelegate,
+                                         UICollectionViewDataSource,
+                                         UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         return selectedImages.count + 1
@@ -170,9 +85,9 @@ extension RegistrationViewController: UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ImageCollectionViewCell.identifier,
+            withReuseIdentifier: RegisterImageCell.identifier,
             for: indexPath
-        ) as? ImageCollectionViewCell else {
+        ) as? RegisterImageCell else {
             return UICollectionViewCell()
         }
         
@@ -207,8 +122,8 @@ extension RegistrationViewController: UICollectionViewDelegate,
 }
 
 //MARK: - ImagePicker
-extension RegistrationViewController: UIImagePickerControllerDelegate,
-                                      UINavigationControllerDelegate {
+extension NewRegistrationViewController: UIImagePickerControllerDelegate,
+                                         UINavigationControllerDelegate {
     private func showImagePicker() {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
@@ -222,22 +137,22 @@ extension RegistrationViewController: UIImagePickerControllerDelegate,
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             guard selectedImages.count < 5 else {
+                dismiss(animated: true)
+                CustomAlert.showAlert(message: "사진은 5장까지만 등록할 수 있습니다", target: self)
+                return
+            }
+            
+            guard let image = info[.editedImage] as? UIImage else { return }
+            
+            selectedImages.append(image)
             dismiss(animated: true)
-            CustomAlert.showAlert(message: "사진은 5장까지만 등록할 수 있습니다", target: self)
-            return
+            registrationView.imageCollectionView.reloadData()
         }
-        
-        guard let image = info[.editedImage] as? UIImage else { return }
-        
-        selectedImages.append(image)
-        dismiss(animated: true)
-        registrationView.imageCollectionView.reloadData()
-    }
 }
 
 //MARK: - control Keyboard
-extension RegistrationViewController: UIScrollViewDelegate {
-    private func controlKeyBoard () {
+extension NewRegistrationViewController: UIScrollViewDelegate {
+    private func controlKeyBoard() {
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                                 action: #selector(hideKeyBoard))
         
@@ -267,7 +182,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
         
         self.registrationView.mainScrollView.contentInset.bottom = keyboardHeight
         
-        if self.registrationView.textView.isFirstResponder {
+        if self.registrationView.productDescriptionTextView.isFirstResponder {
             self.registrationView.mainScrollView.contentOffset.y += keyboardHeight
         }
     }
@@ -301,7 +216,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
             $0.inputAccessoryView = toolBar
         }
         
-        registrationView.textView.inputAccessoryView = toolBar
+        registrationView.productDescriptionTextView.inputAccessoryView = toolBar
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
@@ -311,7 +226,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
 }
 
 //MARK: - TextView PlaceHolder
-extension RegistrationViewController: UITextViewDelegate {
+extension NewRegistrationViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "상세내용" {
             textView.text = nil

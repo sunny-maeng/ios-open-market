@@ -15,8 +15,13 @@ final class MarketGridViewController: UIViewController {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Page>
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Page>
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        fetchMarketData()
+//    }
+//    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchMarketData()
     }
     
@@ -28,7 +33,7 @@ final class MarketGridViewController: UIViewController {
             return
         }
         
-        marketURLSessionProvider.fetchData(request: URLRequest(url: url)) { result in
+        marketURLSessionProvider.requestDataTask(of: URLRequest(url: url)) { result in
             switch result {
             case .success(let data):
                 guard let marketData = JSONDecoder.decodeFromSnakeCase(type: Market.self,
@@ -41,6 +46,7 @@ final class MarketGridViewController: UIViewController {
                     self.setupGridLayout()
                     self.configureDataSource()
                     self.applySnapshot()
+                    self.gridView.delegate = self
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -108,6 +114,14 @@ final class MarketGridViewController: UIViewController {
         snapshot.appendSections([.productGrid])
         snapshot.appendItems(pageData)
         dataSource?.apply(snapshot)
+    }
+}
+
+extension MarketGridViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pageId = pageData[indexPath.item].id
+        let detailViewController = DetailViewController(pageId: pageId)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 

@@ -14,12 +14,7 @@ final class MarketListViewController: UIViewController {
     
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Page>
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Page>
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fetchMarketData()
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchMarketData()
@@ -33,7 +28,7 @@ final class MarketListViewController: UIViewController {
             return
         }
         
-        marketURLSessionProvider.fetchData(request: URLRequest(url: url)) { result in
+        marketURLSessionProvider.requestDataTask(of: URLRequest(url: url)) { result in
             switch result {
             case .success(let data):
                 guard let marketData = JSONDecoder.decodeFromSnakeCase(type: Market.self,
@@ -47,6 +42,7 @@ final class MarketListViewController: UIViewController {
                     self.configureListView()
                     self.configureDataSource()
                     self.applySnapshot()
+                    self.listView.delegate = self
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -89,6 +85,14 @@ final class MarketListViewController: UIViewController {
         snapshot.appendSections([.productList])
         snapshot.appendItems(pageData)
         dataSource?.apply(snapshot)
+    }
+}
+
+extension MarketListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pageId = pageData[indexPath.item].id
+        let detailViewController = DetailViewController(pageId: pageId)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 

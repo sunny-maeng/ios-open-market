@@ -91,13 +91,16 @@ final class MarketListCell: UICollectionViewListCell {
     }
     
     private func generatePriceLabelContent(page: Page) -> NSAttributedString {
-        if page.bargainPrice > 0  {
+        let price: Any = page.currency == .krw ? Int(page.price) : page.price
+        let bargainPrice: Any = page.currency == .krw ? Int(page.bargainPrice) : page.bargainPrice
+        
+        if page.discountedPrice > 0  {
             return NSMutableAttributedString()
-                .strikethrough(string: "\(page.currency.rawValue) \(page.price)")
-                .normal(string: "\n\(page.currency.rawValue) \(page.bargainPrice)")
+                .strikethrough(string: "\(page.currency.rawValue) \(price)")
+                .normal(string: "\n\(page.currency.rawValue) \(bargainPrice)")
         } else {
             return NSMutableAttributedString()
-                .normal(string: "\(page.currency.rawValue) \(page.price)")
+                .normal(string: "\(page.currency.rawValue) \(price)")
         }
     }
     
@@ -125,7 +128,7 @@ final class MarketListCell: UICollectionViewListCell {
                 return
             }
             
-            session.fetchData(request: URLRequest(url: imageUrl)) { result in
+            session.requestDataTask(of: URLRequest(url: imageUrl)) { result in
                 switch result {
                 case .success(let data):
                     DispatchQueue.main.async {

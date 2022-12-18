@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RegistrationView: UIView {    
+class RegistrationView: UIView {    
     private(set) var imageCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         
@@ -41,7 +41,7 @@ final class RegistrationView: UIView {
         return segmentedControl
     }()
     
-    private(set) var textView: UITextView = {
+    private(set) var productDescriptionTextView: UITextView = {
         let textView = UITextView()
         
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +76,6 @@ final class RegistrationView: UIView {
     override init(frame: CGRect) {
         super .init(frame: frame)
         self.backgroundColor = .systemBackground
-        
         setupLayout()
     }
     
@@ -99,7 +98,7 @@ final class RegistrationView: UIView {
         
         [imageCollectionView,
          fieldStackView,
-         textView].forEach {
+         productDescriptionTextView].forEach {
             mainStackView.addArrangedSubview($0)
         }
         
