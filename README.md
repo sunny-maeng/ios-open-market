@@ -1,5 +1,3 @@
-# README(7) 오픈마켓
-
 # 💵 오픈마켓
 REST API와의 연동을 통해 간단한 마켓기능을 사용해볼 수 있는 앱입니다.<br>
 서버와 통신하여 받아온 마켓판매 리스트를 화면에 보여줍니다.<br>
@@ -30,11 +28,13 @@ REST API와의 연동을 통해 간단한 마켓기능을 사용해볼 수 있�
 ## 🛠 기능 소개
 | **List형식 제품리스트 화면** | **Grid형식 제품리스트 화면** |
 | :-------------------------------------------: | :-------------------------------------------: |
-| <img src = "https://i.imgur.com/Ug9Vsy2.gif"> | <img src = "https://i.imgur.com/MkFXVI2.gif"> |
+| <img src = "https://i.imgur.com/g2WZJz1.gif"> | <img src = "https://i.imgur.com/RHOnQWz.gif"> |
 | **상품 상세 화면** |**상품 등록 화면** |
-| <img src = "https://i.imgur.com/HK2CatY.gif"> | <img src = "https://i.imgur.com/AdXGliN.gif"> |
+| <img src = "https://i.imgur.com/CxwvDpf.gif"> | <img src = "https://i.imgur.com/AdXGliN.gif"> |
 | **상품 수정 화면** |**상품 삭제 화면** |
 | <img src = "https://i.imgur.com/T6jxq0u.gif"> | <img src = "https://i.imgur.com/uSZxeQe.gif"> |
+| **상품 등록 Alert처리** | **이미지 로딩 처리** |
+| <img src = "https://i.imgur.com/i06NzIw.gif"> | <img src = "https://i.imgur.com/oZEC1bx.gif"> |
 </br>
 
 ## 👀 Class Diagram
