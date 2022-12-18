@@ -14,12 +14,7 @@ final class MarketListViewController: UIViewController {
     
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Page>
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Page>
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fetchMarketData()
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchMarketData()
