@@ -10,6 +10,7 @@
 		410573C4293836B7000D01EE /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410573C3293836B7000D01EE /* Product.swift */; };
 		410573C6293836EE000D01EE /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410573C5293836EE000D01EE /* Currency.swift */; };
 		410573CE2938E1C7000D01EE /* NewRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410573CD2938E1C7000D01EE /* NewRegistrationViewController.swift */; };
+		41110F3229C97E6500793378 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41110F3129C97E6500793378 /* MainView.swift */; };
 		411376E9292DB3A900AB6D55 /* MarketGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411376E8292DB3A900AB6D55 /* MarketGridCell.swift */; };
 		411376EB292DE16E00AB6D55 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411376EA292DE16E00AB6D55 /* NSMutableAttributedString+Extension.swift */; };
 		413CA8762939876E004F9D46 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413CA8752939876E004F9D46 /* RegistrationView.swift */; };
@@ -73,6 +74,7 @@
 		410573C3293836B7000D01EE /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		410573C5293836EE000D01EE /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		410573CD2938E1C7000D01EE /* NewRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegistrationViewController.swift; sourceTree = "<group>"; };
+		41110F3129C97E6500793378 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		411376E8292DB3A900AB6D55 /* MarketGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketGridCell.swift; sourceTree = "<group>"; };
 		411376EA292DE16E00AB6D55 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		413CA8752939876E004F9D46 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				C70FB10025BEF61C00C9924E /* Main.storyboard */,
+				41110F3129C97E6500793378 /* MainView.swift */,
 				41BA5BF8292C9CB200EAED05 /* MarketListCell.swift */,
 				411376E8292DB3A900AB6D55 /* MarketGridCell.swift */,
 			);
@@ -521,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				864DE0392926300C0025547E /* MockHTTPURLResponse.swift in Sources */,
+				41110F3229C97E6500793378 /* MainView.swift in Sources */,
 				41C61DA029438C6500D5DA92 /* DetailViewController.swift in Sources */,
 				410573CE2938E1C7000D01EE /* NewRegistrationViewController.swift in Sources */,
 				416AF3972924B476002CD10C /* MockURLSession.swift in Sources */,

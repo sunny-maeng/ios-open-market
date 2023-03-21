@@ -8,15 +8,44 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-    @IBOutlet private weak var listView: UIView!
-    @IBOutlet private weak var gridView: UIView!
-    @IBOutlet private weak var segmentControl: UISegmentedControl!
+
+    lazy private var listView: UIView = {
+        let view: UIView = UIView(frame: self.view.frame)
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
+    lazy private var gridView: UIView = {
+        let view: UIView = UIView(frame: self.view.frame)
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
+    lazy private var segmentedControl: UISegmentedControl = {
+        let itemsCount = 2
+        let segmentControl: UISegmentedControl = UISegmentedControl(items: Array(repeating: "", count: itemsCount))
+        segmentControl.selectedSegmentIndex = 0
+        segmentControl.selectedSegmentTintColor = .systemBlue
+        segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.white, .backgroundColor: UIColor.systemBlue],
+                                              for: .selected)
+        segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.systemBlue],
+                                              for: .normal)
+        segmentControl.translatesAutoresizingMaskIntoConstraints = false
+
+        for index in 0..<itemsCount {
+            segmentControl.setWidth(self.view.frame.width * 0.2, forSegmentAt: index)
+        }
+
+        return segmentControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         makeBarButton()
         setUpSegmentControl()
-        gridView.isHidden = true
+        self.view = listView
     }
     
     private func makeBarButton() {
@@ -29,23 +58,25 @@ final class MainViewController: UIViewController {
     }
     
     private func setUpSegmentControl() {
-        segmentControl.backgroundColor = .systemBackground
-        segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.white,
-                                               .backgroundColor: UIColor.systemBlue],
-                                              for: .selected)
-        segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.systemBlue],
-                                              for: .normal)
+        segmentedControl.setAction(showListView(), forSegmentAt: 0)
+        segmentedControl.setAction(showGridView(), forSegmentAt: 1)
+        segmentedControl.setTitle("LIST", forSegmentAt: 0)
+        segmentedControl.setTitle("GRID", forSegmentAt: 1)
+
+        segmentedControl.backgroundColor = .systemBackground
+        self.navigationItem.titleView = segmentedControl
     }
-    
-    @IBAction private func switchLayout(_ sender: UISegmentedControl) {
-        guard let selectedIndex = SegmentedItemState(rawValue: sender.selectedSegmentIndex) else { return }
-        switch selectedIndex {
-        case .list:
-            listView.isHidden = false
-            gridView.isHidden = true
-        case .grid:
-            listView.isHidden = true
-            gridView.isHidden = false
+
+    private func showListView() -> UIAction {
+        return UIAction { [weak self] _ in
+
+            self?.view = self?.listView
+        }
+    }
+
+    private func showGridView() -> UIAction {
+        return UIAction { [weak self] _ in
+            self?.view = self?.gridView
         }
     }
     
