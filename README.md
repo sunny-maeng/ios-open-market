@@ -78,7 +78,7 @@ OpenMarket
 │   │   ├── Base.lproj
 │   │   │   └── LaunchScreen.storyboard
 │   │   ├── MainView
-│   │   │   ├── Main.storyboard
+│   │   │   ├── MainView
 │   │   │   ├── MarketGridCell
 │   │   │   └── MarketListCell
 │   │   ├── DetailView
@@ -97,9 +97,7 @@ OpenMarket
 │   │       └── CustomTextField
 │   └── ViewController
 │       ├── MainViewController
-│       │   ├── MainViewController
-│       │   ├── MarketGridViewController
-│       │   └── MarketListViewController
+│       │   └── MainViewController
 │       ├── DetailViewController
 │       │   └── DetailViewController
 │       ├── RegisterationViewController
