@@ -21,9 +21,13 @@ final class MainViewController: UIViewController {
         setupView()
         makeBarButton()
         setUpSegmentControl()
-        fetchMarketData()
         configureDataSource()
         applyInitialSnapshot()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchMarketData()
     }
 
     private func setupView() {
