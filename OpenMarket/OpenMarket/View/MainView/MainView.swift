@@ -43,13 +43,14 @@ final class MainView: UIView {
     }
 
     private func layout(for layoutType: MainViewLayoutType) {
-        
         switch layoutType {
         case.list:
             configureListView()
         case.grid:
             configureGridLayout()
         }
+        
+        collectionView.setContentOffset(.zero, animated: false)
     }
 
     // ListType
