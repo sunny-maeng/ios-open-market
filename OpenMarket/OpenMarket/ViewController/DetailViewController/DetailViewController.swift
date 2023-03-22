@@ -130,8 +130,10 @@ final class DetailViewController: UIViewController {
                     self.deleteProduct(uri: uri)
                 }
             case .failure(let error):
-                print(error.localizedDescription)
-                CustomAlert.showAlert(message: "수정 업로드 실패입니다. 다시 시도해 주세요", target: self)
+                DispatchQueue.main.async {
+                    print(error.localizedDescription)
+                    CustomAlert.showAlert(message: "본인이 올린 제품만 삭제가능합니다", target: self)
+                }
             }
         }
     }
@@ -159,8 +161,10 @@ final class DetailViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 }
             case .failure(let error):
-                print(error.localizedDescription)
-                CustomAlert.showAlert(message: "삭제 실패입니다. 다시 시도해 주세요", target: self)
+                DispatchQueue.main.async {
+                    print(error.localizedDescription)
+                    CustomAlert.showAlert(message: "삭제 실패입니다. 다시 시도해 주세요", target: self)
+                }
             }
         }
     }
