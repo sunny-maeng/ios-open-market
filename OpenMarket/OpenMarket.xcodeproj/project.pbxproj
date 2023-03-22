@@ -18,13 +18,11 @@
 		413CA87C2939CE21004F9D46 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413CA87B2939CE21004F9D46 /* String+Extension.swift */; };
 		414F9A95293D9190006F9A04 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414F9A94293D9190006F9A04 /* UIImage+Extension.swift */; };
 		416AF3972924B476002CD10C /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416AF3962924B476002CD10C /* MockURLSession.swift */; };
-		4171DE0F292DAAB10071F5CE /* MarketGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171DE0E292DAAB10071F5CE /* MarketGridViewController.swift */; };
 		418C67D72924D30E009051E2 /* MockURLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418C67D62924D30E009051E2 /* MockURLSessionTests.swift */; };
 		418C67E529250D1B009051E2 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418C67E429250D1B009051E2 /* Request.swift */; };
 		41B6E8A2292325F100CBF91D /* Decodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B6E8A1292325F100CBF91D /* Decodable+Extension.swift */; };
 		41B6E8A42923378F00CBF91D /* MarketURLSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B6E8A32923378F00CBF91D /* MarketURLSessionProvider.swift */; };
 		41B6E8A82923BDD900CBF91D /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B6E8A72923BDD900CBF91D /* DateFormatter+Extension.swift */; };
-		41BA5BF7292C9BF100EAED05 /* MarketListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BA5BF6292C9BF100EAED05 /* MarketListViewController.swift */; };
 		41BA5BF9292C9CB200EAED05 /* MarketListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BA5BF8292C9CB200EAED05 /* MarketListCell.swift */; };
 		41C61D9D2943835F00D5DA92 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C61D9C2943835F00D5DA92 /* DetailView.swift */; };
 		41C61DA029438C6500D5DA92 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C61D9F29438C6500D5DA92 /* DetailViewController.swift */; };
@@ -81,14 +79,12 @@
 		413CA87B2939CE21004F9D46 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		414F9A94293D9190006F9A04 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		416AF3962924B476002CD10C /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
-		4171DE0E292DAAB10071F5CE /* MarketGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketGridViewController.swift; sourceTree = "<group>"; };
 		418C67D42924D30E009051E2 /* MockURLSessionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MockURLSessionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		418C67D62924D30E009051E2 /* MockURLSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionTests.swift; sourceTree = "<group>"; };
 		418C67E429250D1B009051E2 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		41B6E8A1292325F100CBF91D /* Decodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extension.swift"; sourceTree = "<group>"; };
 		41B6E8A32923378F00CBF91D /* MarketURLSessionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketURLSessionProvider.swift; sourceTree = "<group>"; };
 		41B6E8A72923BDD900CBF91D /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
-		41BA5BF6292C9BF100EAED05 /* MarketListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketListViewController.swift; sourceTree = "<group>"; };
 		41BA5BF8292C9CB200EAED05 /* MarketListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketListCell.swift; sourceTree = "<group>"; };
 		41C61D9C2943835F00D5DA92 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		41C61D9F29438C6500D5DA92 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -148,8 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				C70FB0FE25BEF61C00C9924E /* MainViewController.swift */,
-				41BA5BF6292C9BF100EAED05 /* MarketListViewController.swift */,
-				4171DE0E292DAAB10071F5CE /* MarketGridViewController.swift */,
 			);
 			path = MainViewController;
 			sourceTree = "<group>";
@@ -538,13 +532,11 @@
 				86F0E0422924B35A00188086 /* MockURLSessionDataTask.swift in Sources */,
 				413CA8762939876E004F9D46 /* RegistrationView.swift in Sources */,
 				41C61D9D2943835F00D5DA92 /* DetailView.swift in Sources */,
-				4171DE0F292DAAB10071F5CE /* MarketGridViewController.swift in Sources */,
 				410573C6293836EE000D01EE /* Currency.swift in Sources */,
 				410573C4293836B7000D01EE /* Product.swift in Sources */,
 				41B6E8A2292325F100CBF91D /* Decodable+Extension.swift in Sources */,
 				C70FB0FB25BEF61C00C9924E /* AppDelegate.swift in Sources */,
 				41EA279F294493450043459E /* EditRegistrationViewController.swift in Sources */,
-				41BA5BF7292C9BF100EAED05 /* MarketListViewController.swift in Sources */,
 				418C67E529250D1B009051E2 /* Request.swift in Sources */,
 				41B6E8A42923378F00CBF91D /* MarketURLSessionProvider.swift in Sources */,
 				86F0E0512924D11800188086 /* NetworkError.swift in Sources */,
